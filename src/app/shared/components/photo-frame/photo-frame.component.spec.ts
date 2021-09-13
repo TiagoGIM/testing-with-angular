@@ -27,7 +27,7 @@ describe(PhotoFrameComponent.name, () => {
     tick(500);
     expect(times).toBe(1);
   }));
-  it(`Should display number of likes when (@Input likes) is incremented`,() =>{
+  it(`(D)Should display number of likes when (@Input likes) is incremented`,() =>{
     fixture.detectChanges();
     component.likes++;
     expect(component.likes).toBe(1);
@@ -35,4 +35,28 @@ describe(PhotoFrameComponent.name, () => {
     const element: HTMLElement = fixture.nativeElement.querySelector('.like-counter');
     expect(element.textContent.trim()).toBe('1')
   });
+  it('(D)Should update aria-label when (@Input likes) i incremented' ,() =>{
+    fixture.detectChanges();
+    component.likes++;
+    fixture.detectChanges();
+    const element: HTMLElement = fixture.nativeElement.querySelector('span');
+    expect(element.getAttribute('aria-label')).toBe('1: people liked')
+  });
+  it('(D) should have area-label with 0 (@Input likes)',()=>{
+    fixture.detectChanges();
+    const element: HTMLElement = fixture.nativeElement.querySelector('span');
+    expect(element.getAttribute('aria-label')).toBe('0: people liked')
+  });
+
+  it('(D) should display image with src and description when bound to properties',()=>{
+
+    const src="https://picsum.photos/200/300";
+    component.src = src;
+    const description="Some description";
+    component.description = description
+    fixture.detectChanges();
+    const img: HTMLImageElement = fixture.nativeElement.querySelector('img');
+    expect(img.getAttribute('src')).toBe(src)
+  });
+
 })
