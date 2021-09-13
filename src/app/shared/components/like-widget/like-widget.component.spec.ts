@@ -33,9 +33,24 @@ describe(LikeWidgetComponent.name, () => {
 
   it(`#${LikeWidgetComponent.prototype.like.name}
     should trigger (@Output liked) when called`, () => {
-      spyOn(component.liked, 'emit');
+    spyOn(component.liked, 'emit');
+    fixture.detectChanges();
+    component.like();
+    expect(component.liked.emit).toHaveBeenCalled();
+  });
+  it(`(D) should display number of likes when clicked`, done => {
+    //spyOn(component.liked, 'emit');
+    fixture.detectChanges();
+    component.liked.subscribe(() => {
+      component.likes++;
       fixture.detectChanges();
-      component.like();
-      expect(component.liked.emit).toHaveBeenCalled();
+      const counterElement: HTMLElement = fixture.nativeElement
+        .querySelector('.like-counter');
+      expect(counterElement.textContent.trim()).toBe('1');
+      done();
+    });
+    const likeWidgetContainerEl : HTMLElement= fixture.nativeElement
+      .querySelector('.like-widget-container');
+    likeWidgetContainerEl.click();
   });
 });

@@ -58,5 +58,4 @@ describe(PhotoFrameComponent.name, () => {
     const img: HTMLImageElement = fixture.nativeElement.querySelector('img');
     expect(img.getAttribute('src')).toBe(src)
   });
-
 })
