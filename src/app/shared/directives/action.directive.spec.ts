@@ -28,6 +28,16 @@ describe(ActionDirective.name, () => {
       divEl.dispatchEvent(event);
       expect(component.hasEvent()).toBe(true)
     });
+    it(`(D) (@Output appAction) should emit event with payload
+    when clicked `,()=>{
+      fixture.detectChanges();
+      const divEl : HTMLElement= fixture.nativeElement
+        .querySelector('.dummy-component');
+      const event = new KeyboardEvent('click')
+      divEl.dispatchEvent(event);
+      fixture.detectChanges();
+      expect(component.hasEvent()).toBe(true)
+    });
 });
 
 
@@ -40,6 +50,6 @@ class ActionDirectiveTestComponent {
     this.event = event;
   }
   hasEvent(): boolean {
-    return !this.event;
+    return !!this.event;
   }
 }

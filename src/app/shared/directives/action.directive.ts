@@ -17,6 +17,6 @@ export class ActionDirective {
   @HostListener('keyup', ['$event'])
 
   handleKeyup (event : KeyboardEvent){
-    if(event.code == 'Enter') this.appAction.emit(event)}
-    //this.appAction.emit(event)}
+    //if(event.code == 'Enter') this.appAction.emit(event)}
+    this.appAction.emit(event)}
 }

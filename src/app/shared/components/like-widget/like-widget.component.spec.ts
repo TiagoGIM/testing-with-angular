@@ -38,7 +38,7 @@ describe(LikeWidgetComponent.name, () => {
     component.like();
     expect(component.liked.emit).toHaveBeenCalled();
   });
-  /*
+  
   it(`(D) should display number of likes when clicked`, done => {
     fixture.detectChanges();
     component.liked.subscribe(() => {
@@ -67,5 +67,5 @@ describe(LikeWidgetComponent.name, () => {
     .querySelector('.like-widget-container');
     const event = new KeyboardEvent('keyup',{key:'Enter'})
     likeWidgetContainerEl.dispatchEvent(event)
-  }); */
+  }); 
 });
