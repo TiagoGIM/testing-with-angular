@@ -5,7 +5,7 @@ const express = require('express')
 
 app.use(cors({ exposedHeaders: ['x-access-token']}));
 app.use(bodyParser.json());
-
+var http = require('http');
 http.createServer(app).listen(3000, function() {
     console.log('Servidor escutando na porta: ' + this.address().port);
 });
